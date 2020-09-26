@@ -22,6 +22,7 @@
  */
 #include "memory.h"
 
+#define ZERO 0
 /***********************************************************
  Function Definitions
 ***********************************************************/
@@ -46,5 +47,80 @@ void set_all(char * ptr, char value, unsigned int size){
 
 void clear_all(char * ptr, unsigned int size){
   set_all(ptr, 0, size);
+}
+
+uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
+  
+  uint8_t i = 0;
+  uint8_t temp;
+  temp = (uint8_t *)reserve_words(length);
+  
+  for (i = 0; i < length; i++) *(temp + i) = *(src +i);
+  
+  for (i = 0; i < lenght; i++) *(dst + i) = *(temp + i);
+  
+  free_words((uint32_t *)temp);
+  
+  // Does the src pointer have to be liberated or ZEROed?
+  
+  return dst;
+}
+
+uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length){
+	
+  uint8_t i = 0;
+  
+  // Is it best to typecast?
+
+  for (i = 0; i < length; i++) *(dst + i) = *(src + i);
+
+  return dst;
+}
+
+uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value){
+
+  uint8_t i = 0;	
+	
+  /* Setting all the values in the memory location to a 
+  specific value*/
+	
+  for (i = 0; i < length; i++) *(src + i) = value ;
+
+  return src;
+}
+
+uint8_t * my_memzero(uint8_t * src, size_t length){
+
+  src = my_memset(src , length , ZERO);
+
+  return src;
+}
+
+uint8_t * my_reverse(uint8_t * src, size_t length){
+
+  uint8_t i = 0;
+  int32_t temp;
+	
+  for (i = 0; i <= (length-1)/2; i++){
+	
+    temp = *(src + i);
+    *(src + i) = *(src + length - i - 1);
+    *(src + length - i - 1) = temp;
+  } 
+
+  return src;
+}
+
+int32_t * reserve_words(size_t length){
+
+  int32_t *ptr;
+  ptr  = (int32_t *)malloc(length * sizeof(int32_t));
+  
+  return ptr;
+}
+
+void free_words(uint32_t * src){
+
+  free(src);
 }
 

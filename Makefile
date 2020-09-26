@@ -54,7 +54,7 @@ else
 endif
 
 TARGET = c1m2
-CFLAGS = -Wall -Werror -g -O0 -std=c99 -D$(PLATFORM) $(ARMFLAGS) 
+CFLAGS = -Wall -Werror -g -O0 -std=c99 -D$(PLATFORM) -D$(VERBOSE) $(ARMFLAGS) 
 CPPFLAGS = -E
 
 OBJS = $(SOURCES:.c=.o)
