@@ -20,6 +20,7 @@
  * @date April 1 2017
  *
  */
+#include "course1.h"
 #include "platform.h"
 #include "memory.h"
 
@@ -28,6 +29,13 @@ char buffer[MAX_LENGTH];
 
 /* A pretty boring main file */
 int main(void) {
+
+#ifdef COURSE1
+
+  course1();
+  
+#else
+
   unsigned int i;
   char value;
 
