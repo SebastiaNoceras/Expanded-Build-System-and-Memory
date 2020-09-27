@@ -1,17 +1,21 @@
 # Name: Sebastià A. Noceras Anderson
 
+# GitHub: https://github.com/SebastiaNoceras
+
+# E-mail: sebas.a.97@hotmail.es
+
 # Username: SebastiaNoceras
 
-# Date: 13/10/2020 
+# Date: 27/09/2020 
 
 # Description: Familiarizes with GNU's gcc, Make, size, objcpy and objdump utilities. 
 
-In this programming assignment you will create a build system using the GNU tools, GCC and GNU Make. This assignment will require you to compile multiple files, link them together and create a final output executable. Some files will be provided for you, but you will need to support two platforms; the host environment and the target embedded system MSP432. The host system will allow you to simulate software on a host platform. The target system will be used in upcoming assignments as we begin to create our microcontroller applications.
+In this programming assignment, you will get more experience with Git Version control, write more C-programming code, and integrate your code with your build system. You will reuse your version control repository and add some new c-programming functions that manipulate memory. You will test your code on your host machine, but your code should compile for both the target platform and host platform. We will use the target platform in future assignments.
 
 After completing this assignment, you will be able to:
 
-1)Use GCC and GNU Make to create a command line build system
-2) Write a makefile that can natively and cross compile an application
-3) Generate preprocessor, assembly, object, dependency, executable, and map output files
+Incorporate a c-program application into your Make and GCC build system
+Write c-program functions that manipulate memory
+Execute and test your application by simulating it on the host machine
 
-For further details: https://www.coursera.org/learn/introduction-embedded-systems/peer/zWAZc/week-2-application-assignment
+For further details: https://www.coursera.org/learn/introduction-embedded-systems/peer/prT70/expanded-build-system-and-memory
