@@ -48,13 +48,14 @@ ifeq ($(PLATFORM),MSP432)
 else
 		CC = gcc
 		LD = ld
-		LDFLAGS = -Wl,-Map=$(TARGET).map 
+		LDFLAGS = -Wl,-Map=$(TARGET).map
 		OBJDUMP = objdump
 		SIZE = size
 endif
 
-TARGET = c1m2
-CFLAGS = -Wall -Werror -g -O0 -std=c99 -D$(PLATFORM) -D$(VERBOSE) $(ARMFLAGS) 
+TARGET = FinalP
+VERBOSE = VERBOSE
+CFLAGS = -Wall -Werror -g -O0 -std=c99 -D$(PLATFORM) -D$(VERBOSE) $(ARMFLAGS)
 CPPFLAGS = -E
 
 OBJS = $(SOURCES:.c=.o)
@@ -66,63 +67,37 @@ all: build
 
 $(TARGET).out : $(OBJS)
 	$(CC) $^ -o $@ $(LDFLAGS) $(CFLAGS)
-	$(SIZE) -Atd $(TARGET).out
-	$(SIZE) $(TARGET).out
+#	$(SIZE) -Atd $(TARGET).out
+#	$(SIZE) $(TARGET).out
 
 %.o : %.c
 	$(CC) -o $@ -c $< $(INCLUDES) $(CFLAGS)
 
-%.i : %.c
-	$(CC) -o $@ $< $(INCLUDES) $(CFLAGS) $(CPPFLAGS)
+#%.i : %.c
+#	$(CC) -o $@ $< $(INCLUDES) $(CFLAGS) $(CPPFLAGS)
 
-%.asm : %.c
-	$(CC) -o $@ -S $< $(INCLUDES) $(CFLAGS)
+#%.asm : %.c
+#	$(CC) -o $@ -S $< $(INCLUDES) $(CFLAGS)
 
-$(TARGET).asm : $(TARGET).out
-	$(OBJDUMP) --disassemble $< > $@
+#$(TARGET).asm : $(TARGET).out
+#	$(OBJDUMP) --disassemble $< > $@
 
-%.d : %.c
-	$(CC) -o $@ -M $< $(INCLUDES) $(CFLAGS)
+#%.d : %.c
+#	$(CC) -o $@ -M $< $(INCLUDES) $(CFLAGS)
 
 
 .PHONY: compile-all
 compile-all: $(OBJS)
 
 .PHONY: build
-build: $(DEPS) $(TARGET).out   
+build: $(TARGET).out
 
 .PHONY: info
-info: 
+info:
 	$(info $(SOURCES))
 	$(info $(INCLUDES))
 
 .PHONY: clean
-clean: 
+clean:
 	rm -f $(TARGET).out $(OBJS) $(ASMS) $(PREPRO) $(DEPS) $(TARGET).asm \
 		$(TARGET).map
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

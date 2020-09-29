@@ -13,11 +13,17 @@ ifeq ($(PLATFORM),HOST)
 
 	SOURCES = main.c \
 		  memory.c \
+		  course1.c \
+		  data.c \
+		  stats.c \
 
 	INCLUDES = -I../include/common
 else
 	SOURCES = main.c \
 		  memory.c \
+		  course1.c \
+		  data.c \
+		  stats.c \
 		  interrupts_msp432p401r_gcc.c \
 		  startup_msp432p401r_gcc.c \
 		  system_msp432p401r.c
@@ -27,4 +33,3 @@ else
 		   -I../include/msp432 \
 		   -I../
 endif
-	

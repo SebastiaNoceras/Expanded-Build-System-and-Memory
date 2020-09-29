@@ -1,10 +1,72 @@
- * ==============================================================
- *                   ## How to use this file ##
- * ==============================================================
- *      (#) Use print_statistics() funtion to print the statistics of given array.
- *      (#) Use print_array() function to print the array in the screen.
- *      (#) Use find_median() function to return the median of given array.
- *      (#) Use find_mean() function to return the mean of given array.
- *      (#) Use find_maximum() function to return the maximum number in given array.
- *      (#) Use find_minimum() function to return the minimum number in given array.
- *      (#) Use sort_array() function to rearrange the array data into descending order and store data on same array.
+/*******************************************************************************/
+
+#include "data.h"
+
+uint8_t my_itoa(int32_t data, uint8_t *ptr, uint32_t base){
+
+  int32_t temp;
+  char negative = 0;
+  uint8_t i = 0, length;
+  
+  if (data == 0) {
+    
+    *(ptr) = '0'; 
+    *(ptr + 1) = '\0';
+    return 1;	
+  }
+	
+  if (data < 0 && base == 10){ // negative base = 10 data
+  
+    negative = 1;	
+    data = -data;
+  }
+  
+  while (data != 0) {
+  
+    int residuo = data % base;
+    if (residuo > 9) *(ptr + i) = residuo - 10 + 'a';
+    else *(ptr + i) = residuo + '0';
+    i = i + 1;
+    data = data / base;
+  }
+
+  if (negative == 1) *(ptr + i++) = '-';
+	
+  length = i;
+  i = 0;
+
+  for (i = 0; i < (length / 2); i++){ // reverse
+  
+    temp = *(ptr + i);
+    *(ptr + i) = *(ptr + length - i - 1);
+    *(ptr + length - i - 1) = temp;
+  }
+  
+   *(ptr + length)= '\0';
+   
+  return length;
+  
+}
+
+int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base) {
+
+int32_t data = 0;
+uint8_t i = digits-2;
+uint8_t temp = (uint8_t)base;
+base = 1;
+		
+if(!ptr) // If pointer is not zero
+  return -1;
+	
+while( i > 0 ) {
+  data += *(ptr + i) * (base) ;
+  i = i - 1;
+  base*= temp;
+}
+	
+if(temp == 10 && *(ptr + i) == '-')    
+  data = -data;
+else
+  data += *(ptr + i) * ( base ); 	
+return data;
+}
