@@ -20,6 +20,9 @@
  * @date April 1 2017
  *
  */
+#include <stddef.h>
+#include <stdint.h>
+#include <stdlib.h>
 #include "memory.h"
 
 #define ZERO 0
@@ -52,12 +55,12 @@ void clear_all(char * ptr, unsigned int size){
 uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
   
   uint8_t i = 0;
-  uint8_t temp;
+  uint8_t *temp;
   temp = (uint8_t *)reserve_words(length);
   
   for (i = 0; i < length; i++) *(temp + i) = *(src +i);
   
-  for (i = 0; i < lenght; i++) *(dst + i) = *(temp + i);
+  for (i = 0; i < length; i++) *(dst + i) = *(temp + i);
   
   free_words((uint32_t *)temp);
   

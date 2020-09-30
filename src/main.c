@@ -20,6 +20,7 @@
  * @date April 1 2017
  *
  */
+#include <stddef.h>
 #include "course1.h"
 #include "platform.h"
 #include "memory.h"
@@ -58,5 +59,6 @@ int main(void) {
   }
   PRINTF("\n");
   return 0;
+#endif
 }
 

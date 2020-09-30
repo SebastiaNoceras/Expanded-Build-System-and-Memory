@@ -28,7 +28,7 @@
 /* Size of the Data Set */
 #define SIZE (40)
 
-void main() {
+void mainx() {
 
   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
                               114, 88,   45,  76, 123,  87,  25,  23,

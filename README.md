@@ -19,3 +19,14 @@ Write c-program functions that manipulate memory
 Execute and test your application by simulating it on the host machine
 
 For further details: https://www.coursera.org/learn/introduction-embedded-systems/peer/prT70/expanded-build-system-and-memory
+
+ * ==============================================================
+ *                   ## How to compile this projec  ##
+ * ==============================================================
+ * THE FOLLOWING COMMAND WILL COMPILE AND LNIK YOUR FILES FOR A SIMPLE BUILD:
+ *   > make build PLATFORM=HOST COURSE1=COURSE1 VERBOSE=
+ * 
+ * THE FOLLOWING COMMAND WILL COMPILE AND LINK YOUR FILES FOR A BUILD WITH EXTENDED DETAILS:
+ *   > make build PLATFORM=HOST COURSE1=COURSE1 VERBOSE=1
+     	
+

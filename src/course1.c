@@ -24,6 +24,9 @@
 #include "data.h"
 #include "stats.h"
 
+#define BASE_16 16
+#define BASE_10 10
+
 int8_t test_data1() {
   uint8_t * ptr;
   int32_t num = -4096;

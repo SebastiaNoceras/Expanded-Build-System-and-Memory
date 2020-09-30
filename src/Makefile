@@ -38,8 +38,8 @@ include sources.mk
 ifeq ($(PLATFORM),MSP432)
 		CC = arm-none-eabi-gcc
 		LD = arm-none-eabi-ld
-		LINKER_FILE = msp432p401r.lds
-		LDFLAGS = -T $(LINKER_FILE)
+		LINKER_FILE = ../msp432p401r.lds
+		LDFLAGS = -Wl,-Map=$(TARGET).map -T $(LINKER_FILE)
 		CPU = cortex-m4
 		ARMFLAGS = -mcpu=$(CPU) -mthumb -march=armv7e-m -mfloat-abi=hard\
 			   -mfpu=fpv4-sp-d16 --specs=nosys.specs
@@ -48,17 +48,14 @@ ifeq ($(PLATFORM),MSP432)
 else
 		CC = gcc
 		LD = ld
-		LDFLAGS =
+		LDFLAGS = -Wl,-Map=$(TARGET).map
 		OBJDUMP = objdump
 		SIZE = size
 endif
 
-ifeq ($(VERBOSE),1)
-	EXTRAFLAGS=-DVERBOSE
-endif
-
 TARGET = FinalP
-CFLAGS = -Wall -Werror -g -O0 -std=c99 -D$(PLATFORM) -D$(COURSE1) $(EXTRAFLAGS) $(ARMFLAGS)
+VERBOSE = VERBOSE
+CFLAGS = -Wall -Werror -g -O0 -std=c99 -D$(PLATFORM) -D$(VERBOSE) $(ARMFLAGS)
 CPPFLAGS = -E
 
 OBJS = $(SOURCES:.c=.o)

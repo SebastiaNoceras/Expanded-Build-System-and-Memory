@@ -1,6 +1,8 @@
 /*******************************************************************************/
 
+#include <stdint.h>
 #include "data.h"
+
 
 uint8_t my_itoa(int32_t data, uint8_t *ptr, uint32_t base){
 
@@ -12,7 +14,7 @@ uint8_t my_itoa(int32_t data, uint8_t *ptr, uint32_t base){
     
     *(ptr) = '0'; 
     *(ptr + 1) = '\0';
-    return 1;	
+    return 2;	
   }
 	
   if (data < 0 && base == 10){ // negative base = 10 data
@@ -44,29 +46,28 @@ uint8_t my_itoa(int32_t data, uint8_t *ptr, uint32_t base){
   
    *(ptr + length)= '\0';
    
-  return length;
+  return length+1;
   
 }
 
 int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base) {
 
 int32_t data = 0;
-uint8_t i = digits-2;
-uint8_t temp = (uint8_t)base;
-base = 1;
-		
+uint8_t i = 0;
+
 if(!ptr) // If pointer is not zero
   return -1;
-	
-while( i > 0 ) {
-  data += *(ptr + i) * (base) ;
-  i = i - 1;
-  base*= temp;
+
+if (digits && (*ptr == '-'))
+  i++;
+
+while( i < (digits-1) ) {
+  if (*(ptr + i) > '9') data = data*base + (*(ptr + i) + 10 - 'a');
+  else data = data*base+ (*(ptr + i) - '0');
+  i++;
 }
-	
-if(temp == 10 && *(ptr + i) == '-')    
+if (digits && (*ptr == '-'))
   data = -data;
-else
-  data += *(ptr + i) * ( base ); 	
+
 return data;
 }
